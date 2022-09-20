@@ -1,4 +1,3 @@
-
 let preOutput = document.querySelector('.previous-operand');
 const currOutput = document.querySelector('.current-operand');
 // ****** don't use `id` for multiply elements
@@ -12,34 +11,54 @@ const fullDisly = document.querySelector('.output');
 
 
 // select all number and operator element in together as a node list
-function numberDisplay(numOutput){
+function numberDisplay(numOutput) {
     for (let i = 0; i < numOutput.length; i++) {
-    const element = numOutput[i];
+        const element = numOutput[i];
 
-    element.addEventListener("click", () =>{
-        preOutput.innerHTML = preOutput.innerHTML + element.innerHTML;
-        
-        return numOutput;
-    })
-}
+        element.addEventListener("click", () => {
+            preOutput.innerHTML = preOutput.innerHTML + element.innerHTML;
+
+            // ****** It doesn't need to be returned 
+            // return numOutput;
+            // *******
+        })
+    }
 }
 
 numberDisplay(number);
 numberDisplay(operator);
 
 // calculate all display element 
-calculate.addEventListener("click", ()=>{
+calculate.addEventListener("click", () => {
 
-        preOutput = eval(preOutput.innerHTML);
-        currOutput.innerHTML = preOutput;
+    // ********** You are changing the variable/element itself. Not its innerHTML.. It was the main problem
+    // preOutput = eval(preOutput.innerHTML);
+    // *************
+
+
+    // ***** It would be the current way. But you usually don't want to show the results in both elements. So calculating only the bottom element
+    // preOutput.innerHTML = eval(preOutput.innerHTML);
+    // *************
+
+    // show the calculation
+    currOutput.innerHTML = eval(preOutput.innerHTML);
+
 })
 
 // display last one element delete event 
-del.addEventListener("click", ()=>{
-    preOutput.innerHTML = preOutput.innerHTML.substring(0, preOutput.innerHTML.length -1); 
+del.addEventListener("click", () => {
+    preOutput.innerHTML = preOutput.innerHTML.substring(0, preOutput.innerHTML.length - 1);
 })
 
 // Display all element clear event 
-clear.addEventListener("click",()=>{
-    fullDisly.innerHTML = '';
+clear.addEventListener("click", () => {
+
+    // ********* You are removing the elments this way.... Not the innerHTML of that elements
+    // fullDisly.innerHTML = '';
+    // ********* 
+
+    // removing element's innerHTML
+    preOutput.innerHTML = '';
+    currOutput.innerHTML = '';
+
 });
