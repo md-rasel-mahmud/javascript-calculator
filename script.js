@@ -1,8 +1,10 @@
 
 let preOutput = document.querySelector('.previous-operand');
 const currOutput = document.querySelector('.current-operand');
-const operator = document.querySelectorAll('#operator');
-const number = document.querySelectorAll('#number');
+// ****** don't use `id` for multiply elements
+const operator = document.querySelectorAll('.operator');
+const number = document.querySelectorAll('.number');
+// *******
 const clear = document.querySelector('.clear');
 let calculate = document.querySelector('.calculate');
 const del = document.querySelector('.del');
